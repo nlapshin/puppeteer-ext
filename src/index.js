@@ -1,5 +1,5 @@
 const PuppeteerPageExt = require('./page');
 
-module.expors = {
+module.exports = {
 	PuppeteerPageExt
 };
