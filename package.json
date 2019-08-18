@@ -1,0 +1,31 @@
+{
+  "name": "puppeteer-ext",
+  "version": "1.0.0",
+  "description": "Additional useful features for puppeteer",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlapshin/puppeteer-ext.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "puppeteer-ext"
+  ],
+  "author": {
+    "name": "Nikolay Lapshin",
+    "email": "nlapshin1989@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nlapshin/puppeteer-ext/issues"
+  },
+  "homepage": "https://github.com/nlapshin/puppeteer-ext#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0"
+  }
+}

@@ -1,2 +1,2 @@
 # puppeteer-ext
-additional useful features for puppeteer
+Additional useful features for puppeteer
