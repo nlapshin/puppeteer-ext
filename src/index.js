@@ -28,7 +28,7 @@ module.exports = class Harvester extends EventEmitter3 {
 		this.logger.info(`Headless ${headless ? 'enabled' : 'disabled'}`);
 		this.logger.info(`Browser ${chrome ? 'Chrome' : 'Chromium'}`);
 
-		const windowSize = `${defaultViewport.height}x${defaultViewport.width}`;
+		const windowSize = `${defaultViewport.width}x${defaultViewport.height}`;
 
 		return puppeteer.launch(Object.assign({
 			args: compact([
