@@ -15,18 +15,17 @@ module.exports = class Harvester extends EventEmitter3 {
 
 		this.csl = new ConsoleProfiler(this.options.profiler);
 		this.logger = new Logger(this.options.logger);
+
+		this.logger.info(`Proxy ${this.options.proxy.enabled ? 'enabled' : 'disabled'}`);
+		this.logger.info(`Blocked ${this.options.blocked.enabled ? 'enabled' : 'disabled'}`);
+		this.logger.info(`Profiler ${this.options.profiler.enabled ? 'enabled' : 'disabled'}`);
+		this.logger.info(`Headless ${this.options.headless ? 'enabled' : 'disabled'}`);
+		this.logger.info(`Browser ${this.options.chrome ? 'Chrome' : 'Chromium'}`);
 	}
 
 	async browser() {
-		const { proxy, blocked, profiler, executor } = this.options;
+		const { proxy, executor } = this.options;
 		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors, slowMo } = executor;
-
-		this.logger.info('Browser started!');
-		this.logger.info(`Proxy ${proxy.enabled ? 'enabled' : 'disabled'}`);
-		this.logger.info(`Blocked ${blocked.enabled ? 'enabled' : 'disabled'}`);
-		this.logger.info(`Profiler ${profiler.enabled ? 'enabled' : 'disabled'}`);
-		this.logger.info(`Headless ${headless ? 'enabled' : 'disabled'}`);
-		this.logger.info(`Browser ${chrome ? 'Chrome' : 'Chromium'}`);
 
 		const windowSize = `${defaultViewport.width}x${defaultViewport.height}`;
 
