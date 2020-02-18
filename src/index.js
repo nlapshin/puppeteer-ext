@@ -14,7 +14,7 @@ module.exports = class Harvester extends EventEmitter3 {
 		this.options = makeOptions(options);
 
 		this.csl = new ConsoleProfiler(this.options.profiler);
-		this.logger = new Logger(this.options.namespace);
+		this.logger = new Logger(this.options.logger);
 	}
 
 	async browser() {

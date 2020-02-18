@@ -3,7 +3,7 @@ module.exports = (options = {}) => {
 	const proxy = Object.assign({ enabled: false, server: '', username: '', password: '' }, options.proxy || {});
 	const blocked = Object.assign({ enabled: false, types: [], sites: [] }, options.blocked || {});
 	const profiler = Object.assign({ enabled: false, threshold: 1000, namespace }, options.profiler || {});
-	const logger = Object.assign({ enabled: false }, options.logger || {});
+	const logger = Object.assign({ enabled: false, namespace }, options.logger || {});
 	const executor = Object.assign({
 		headless: true,
 		chrome: false,

@@ -4,13 +4,18 @@ const Diff = require('./diff');
 const diff = new Diff();
 
 module.exports = class Logger {
-	constructor(namespace = '') {
-		this.name = namespace ? `downloader:${namespace}` : 'fetcher:root';
+	constructor(options = {}) {
+		this.enabled = options.enabled || false;
+		this.name = options.namespace ? options.namespace : 'fetcher';
 
 		diff.init(this.name);
 	}
 
 	log(message = '', colors = {}) {
+		if (this.enabled === false) {
+			return;
+		}
+
 		colors = {
 			date: 'gray',
 			name: 'blue',
