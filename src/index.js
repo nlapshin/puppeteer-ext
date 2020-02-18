@@ -19,7 +19,7 @@ module.exports = class Harvester extends EventEmitter3 {
 
 	async browser() {
 		const { proxy, blocked, profiler, executor } = this.options;
-		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors } = executor;
+		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors, slowMo } = executor;
 
 		this.logger.info('Browser started!');
 		this.logger.info(`Proxy ${proxy.enabled ? 'enabled' : 'disabled'}`);
@@ -41,7 +41,8 @@ module.exports = class Harvester extends EventEmitter3 {
 			headless,
 			defaultViewport,
 			ignoreHTTPSErrors,
-			executablePath: chrome ? chromePath : ''
+			executablePath: chrome ? chromePath : '',
+			slowMo
 		}));
 	}
 
@@ -103,10 +104,11 @@ module.exports = class Harvester extends EventEmitter3 {
 		return page;
 	}
 
-	async exec(link) {
+	async exec(link, cookies) {
 		const browser = await this.browser();
 		const page = await this.page(browser);
 
+		if (cookies) await this.cookies(page, cookies);
 		if (link) await page.goto(link);
 
 		return { browser, page };
