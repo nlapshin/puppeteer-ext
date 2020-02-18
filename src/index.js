@@ -28,6 +28,8 @@ module.exports = class Harvester extends EventEmitter3 {
 		this.logger.info(`Headless ${headless ? 'enabled' : 'disabled'}`);
 		this.logger.info(`Browser ${chrome ? 'Chrome' : 'Chromium'}`);
 
+		const windowSize = `${defaultViewport.height}x${defaultViewport.width}`;
+
 		return puppeteer.launch(Object.assign({
 			args: compact([
 				`${proxy.enabled ? `--proxy-server=${proxy.server}` : ''}`,
@@ -36,7 +38,7 @@ module.exports = class Harvester extends EventEmitter3 {
 				// '--disable-dev-shm-usage',
 				// '--disable-accelerated-2d-canvas',
 				// '--disable-gpu',
-				`--window-size=${defaultViewport} ? ${defaultViewport.height}x${defaultViewport.width} : '1920x1080'`,
+				`--window-size=${windowSize}`,
 			]),
 			headless,
 			defaultViewport,

@@ -4,7 +4,12 @@ module.exports = (options = {}) => {
 	const blocked = Object.assign({ enabled: false, types: [], sites: [] }, options.blocked || {});
 	const profiler = Object.assign({ enabled: false, threshold: 1000, namespace }, options.profiler || {});
 	const logger = Object.assign({ enabled: false }, options.logger || {});
-	const executor = Object.assign({ headless: true, chrome: false, chromePath: '/usr/bin/google-chrome' }, options.executor || {});
+	const executor = Object.assign({
+		headless: true,
+		chrome: false,
+		chromePath: '/usr/bin/google-chrome',
+		defaultViewport: { height: '1080', width: '1920' }
+	}, options.executor || {});
 
 	return {
 		namespace,
