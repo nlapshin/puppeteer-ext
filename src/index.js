@@ -116,6 +116,13 @@ module.exports = class Harvester extends EventEmitter3 {
 		return { browser, page };
 	}
 
+	async body(page, waitTime = 0) {
+		await page.waitFor(waitTime);
+		await page.waitForSelector('body');
+
+		return page.evaluate(() => document.body.innerHTML);
+	}
+
 	async gotoTimeless (page, link) {
 		return page.goto(link, { timeout: 0 });
 	}
