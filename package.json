@@ -27,5 +27,11 @@
   "homepage": "https://github.com/nlapshin/puppeteer-ext#readme",
   "devDependencies": {
     "eslint": "^6.1.0"
+  },
+  "dependencies": {
+    "console-profiler": "^1.1.1",
+    "eventemitter3": "^4.0.0",
+    "lodash": "^4.17.15",
+    "puppeteer": "^2.1.1"
   }
 }
