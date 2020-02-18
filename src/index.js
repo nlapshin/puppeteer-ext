@@ -178,4 +178,12 @@ module.exports = class Harvester extends EventEmitter3 {
 			return style && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
 		}, selector);
 	}
+
+	async isVisibleElement (page, elementHandle) {
+		return page.evaluate(el => {
+			const height = window.getComputedStyle(el).getPropertyValue('display') !== 'none' && el.offsetHeight;
+
+			return !!height;
+		}, elementHandle);
+	}
 };
