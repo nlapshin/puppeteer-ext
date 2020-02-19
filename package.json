@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-ext",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "description": "Additional useful features for puppeteer",
   "main": "src/index.js",
   "scripts": {
