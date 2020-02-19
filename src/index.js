@@ -166,6 +166,22 @@ module.exports = class Harvester extends EventEmitter3 {
 		}, scrollableSection);
 	}
 
+	async findAndClick(page, selector) {
+		const element = await page.$(selector);
+		await element.click();
+	}
+
+	async findElementByTextAndClick(page, selector, text) {
+		return page.evaluate((selector, text) => {
+			const elements = document.querySelectorAll(selector);
+			const element = elements ? Array.from(elements).find(elem => elem.innerText.toLowerCase().includes(text.toLowerCase())) : null;
+
+			if (element) {
+				element.click();
+			}
+		}, selector, text);
+	}
+
 	async clickIfVisible(page, selector) {
 		if (await this.isVisible(page, selector)) {
 			return page.click(selector);
