@@ -48,7 +48,7 @@ module.exports = class Harvester extends EventEmitter3 {
 	}
 
 	async page(browser) {
-		const { proxy, blocked, profiler } = this.options;
+		const { proxy, blocked, profiler, page: pageOpts } = this.options;
 
 		const page = await browser.newPage();
 
@@ -60,6 +60,7 @@ module.exports = class Harvester extends EventEmitter3 {
 		}
 
 		await page.setRequestInterception(true);
+		await page.setDefaultTimeout(pageOpts.defaultTimeout);
 
 		page.on('request', request => {
 			const type = request.resourceType();
