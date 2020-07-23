@@ -27,7 +27,7 @@ module.exports = class Harvester extends EventEmitter3 {
 		const { proxy, executor } = this.options;
 		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors, slowMo } = executor;
 
-		const windowSize = `${defaultViewport.width}x${defaultViewport.height}`;
+		const windowSize = `${defaultViewport.width},${defaultViewport.height}`;
 
 		return puppeteer.launch(Object.assign({
 			args: compact([

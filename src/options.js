@@ -8,11 +8,13 @@ module.exports = (options = {}) => {
 		headless: true,
 		chrome: false,
 		chromePath: '/usr/bin/google-chrome',
-		defaultViewport: { height: 1080, width: 1920 }
-  }, options.executor || {});
-  const page = Object.assign({
-    defaultTimeout: 30 * 1000
-  }, options.page || {})
+		defaultViewport: { height: 800, width: 1024 }
+	}, options.executor || {});
+
+
+	const page = Object.assign({
+		defaultTimeout: 30 * 1000
+	}, options.page || {});
 
 	return {
 		namespace,
@@ -20,7 +22,7 @@ module.exports = (options = {}) => {
 		blocked,
 		profiler,
 		logger,
-    executor,
-    page
+		executor,
+		page
 	};
 };
