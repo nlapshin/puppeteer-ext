@@ -12,5 +12,5 @@ test
 *.log
 .eslintrc.js
 .editorconfig
-.editoonfig
+.editconfig
 README.md
