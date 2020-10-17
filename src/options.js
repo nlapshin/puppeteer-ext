@@ -8,7 +8,8 @@ module.exports = (options = {}) => {
 		headless: true,
 		chrome: false,
 		chromePath: '/usr/bin/google-chrome',
-		defaultViewport: { height: 800, width: 1024 }
+		defaultViewport: { height: 800, width: 1024 },
+		userDataDir: null
 	}, options.executor || {});
 
 

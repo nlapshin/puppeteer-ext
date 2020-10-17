@@ -25,25 +25,21 @@ module.exports = class Harvester extends EventEmitter3 {
 
 	async browser() {
 		const { proxy, executor } = this.options;
-		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors, slowMo } = executor;
+		const { headless, chrome, chromePath, defaultViewport, ignoreHTTPSErrors, slowMo, userDataDir } = executor;
 
 		const windowSize = `${defaultViewport.width},${defaultViewport.height}`;
 
 		return puppeteer.launch(Object.assign({
 			args: compact([
 				`${proxy.enabled ? `--proxy-server=${proxy.server}` : ''}`,
-				// '--no-sandbox',
-				// '--disable-setuid-sandbox',
-				// '--disable-dev-shm-usage',
-				// '--disable-accelerated-2d-canvas',
-				// '--disable-gpu',
 				`--window-size=${windowSize}`,
 			]),
 			headless,
 			defaultViewport,
 			ignoreHTTPSErrors,
 			executablePath: chrome ? chromePath : '',
-			slowMo
+			slowMo,
+			userDataDir
 		}));
 	}
 
@@ -170,6 +166,15 @@ module.exports = class Harvester extends EventEmitter3 {
 	async findAndClick(page, selector) {
 		const element = await page.$(selector);
 		await element.click();
+	}
+
+	async findElementByText(page, selector, text) {
+		return page.evaluateHandle((selector, text) => {
+			const elements = document.querySelectorAll(selector);
+			const element = elements ? Array.from(elements).find(elem => elem.innerText.toLowerCase().includes(text.toLowerCase())) : null;
+
+			return element;
+		}, selector, text);
 	}
 
 	async findElementByTextAndClick(page, selector, text) {
